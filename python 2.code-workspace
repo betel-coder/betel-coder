@@ -1,0 +1,78 @@
+import time
+
+
+CORRECT_USERNAME = "admin"
+CORRECT_PASSWORD = "admin123"
+
+DELAYS = [5, 10, 20, 40]
+
+failed_attempts = 0
+max_attempts = 5
+access_granted = False
+
+print("***********************")
+print("=== LOGIN SYSTEM ===")
+print("************************")
+while failed_attempts < max_attempts:
+    user_input = input("Enter username: ")
+    pass_input = input("Enter password: ")
+
+    if user_input == CORRECT_USERNAME and pass_input == CORRECT_PASSWORD:
+        print("\nAccess Granted!\n")
+        access_granted = True
+        break
+    else:
+        failed_attempts += 1
+
+        if failed_attempts < max_attempts:
+            wait_time = DELAYS[failed_attempts - 1]
+            print(
+                f"Incorrect credentials. Try again in {wait_time} seconds...\n"
+            )
+            time.sleep(wait_time)
+        else:
+            print("\nAccount Locked!")
+
+
+if access_granted:
+    print("====================================")
+    print("  === STUDENT GRADING SYSTEM ===  ")
+    print("====================================")
+
+    student_name = input("Enter student name: ")
+
+    
+    maths = float(input("Enter marks for maths: "))
+    english = float(input("Enter marks for english: "))
+    science = float(input("Enter marks for science: "))
+
+    
+    average_mark = (maths + english + science) / 3
+
+    if 80 <= average_mark <= 100:
+        grade = "A"
+        status = "Pass"
+    elif 70 <= average_mark < 80:
+        grade = "B"
+        status = "Pass"
+    elif 60 <= average_mark < 70:
+        grade = "C"
+        status = "Pass"
+    elif 50 <= average_mark < 50: 
+        grade = "D"
+        status = "Pass"
+    elif average_mark >= 50 and average_mark < 60:
+        grade = "D"
+        status = "Pass"
+    else:
+        grade = "F"
+        status = "Fail"
+
+    
+    print(" -----STUDENT REPORT --------")
+    print("************************************")
+    print(f"Student Name : {student_name}")
+    print(f"Average Mark : {average_mark:.2f}")
+    print(f"Grade        : {grade}")
+    print(f"Status       : {status}")
+    print("***************************************")
